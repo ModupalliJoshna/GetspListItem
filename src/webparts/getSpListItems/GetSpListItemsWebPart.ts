@@ -9,14 +9,8 @@ import pnp from 'sp-pnp-js';
 
 import styles from './GetSpListItemsWebPart.module.scss';
 import * as strings from 'GetSpListItemsWebPartStrings';
-import MockHttpClient from './MockHttpClient'; 
-/*import {  
-  SPHttpClient  
-} from '@microsoft/sp-http'; 
-import {  
-  Environment,  
-  EnvironmentType  
-} from '@microsoft/sp-core-library';*/
+
+
 
 
 
@@ -30,24 +24,13 @@ export interface ISPList {
   EId: string;  
   Ename: string; 
   Title: number;  
- 
-  //Experience: string;  
-  //Location: string;  
+   
 }  
 
 export default class GetSpListItemsWebPart extends BaseClientSideWebPart <IGetSpListItemsWebPartProps> {
 
 
-  /*private _getMockListData(): Promise<ISPList[]> {
-    return MockHttpClient.get(this.context.pageContext.web.absoluteUrl).then(() => {
-        const listData: ISPList[] = [
-          { Title:12,EId: 'E123', Ename: 'John'},  
-          { Title:12,EId: 'Etb', Ename: 'bvgc'},  
-         { Title:155,EId: 'fv78', Ename: 'nhgfv'}  
-            ];
-        return listData;
-    }) as Promise<ISPList[]>; 
-}  */
+  
 
 private _getListData(): Promise<ISPList[]> {
   return pnp.sp.web.lists.getByTitle("second").items.get().then((response) => {
